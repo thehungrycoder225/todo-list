@@ -12,40 +12,43 @@ filterOption.addEventListener("click", filterTodo);
 function addTodo(e) {
   // Prevent Form from Submitting
   e.preventDefault();
-  // todo Div
-  const todoDiv = document.createElement("div");
-  todoDiv.classList.add("todo");
 
-  // Create List
-  const newTodo = document.createElement("li");
-  if ((todoListInput.value = null)) {
-    document.querySelector("h2").innerText = "Please enter your task";
-  } ekse {
+  if (todoListInput.value === "") {
+    let validationText = document.querySelector("h2");
+    validationText.innerText = "Please Enter Your Task";
+    setTimeout(() => {
+      validationText.innerText = "";
+    }, 2000);
+  } else {
+    // todo Div
+    const todoDiv = document.createElement("div");
+    todoDiv.classList.add("todo");
+
+    // Create List
+    const newTodo = document.createElement("li");
     newTodo.innerText = todoListInput.value;
     newTodo.classList.add("todo-item");
     todoDiv.appendChild(newTodo);
 
-      // Save Local Todo
-  saveTodo(todoListInput.value);
+    // Save Local Todo
+    saveTodo(todoListInput.value);
+
+    // Check Button
+    const completedButton = document.createElement("button");
+    completedButton.innerHTML = '<i class="fas fa-check"></i>';
+    completedButton.classList.add("complete-btn");
+    todoDiv.appendChild(completedButton);
+
+    // Trash Button
+    const trashButton = document.createElement("button");
+    trashButton.innerHTML = '<i class="fas fa-trash"></i>';
+    trashButton.classList.add("trash-btn");
+    todoDiv.appendChild(trashButton);
+
+    todoList.appendChild(todoDiv);
+    todoListInput.value = "";
+    validationText.innerText = "";
   }
- 
-
-
-
-  // Check Button
-  const completedButton = document.createElement("button");
-  completedButton.innerHTML = '<i class="fas fa-check"></i>';
-  completedButton.classList.add("complete-btn");
-  todoDiv.appendChild(completedButton);
-
-  // Trash Button
-  const trashButton = document.createElement("button");
-  trashButton.innerHTML = '<i class="fas fa-trash"></i>';
-  trashButton.classList.add("trash-btn");
-  todoDiv.appendChild(trashButton);
-
-  todoList.appendChild(todoDiv);
-  todoListInput.value = "";
 }
 
 function deleteCheck(e) {
