@@ -18,12 +18,19 @@ function addTodo(e) {
 
   // Create List
   const newTodo = document.createElement("li");
-  newTodo.innerText = todoListInput.value;
-  newTodo.classList.add("todo-item");
-  todoDiv.appendChild(newTodo);
+  if ((todoListInput.value = null)) {
+    document.querySelector("h2").innerText = "Please enter your task";
+  } ekse {
+    newTodo.innerText = todoListInput.value;
+    newTodo.classList.add("todo-item");
+    todoDiv.appendChild(newTodo);
 
-  // Save Local Todo
+      // Save Local Todo
   saveTodo(todoListInput.value);
+  }
+ 
+
+
 
   // Check Button
   const completedButton = document.createElement("button");
